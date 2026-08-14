@@ -93,10 +93,13 @@ def generate(model, tok, prompt, gamma=0.25, delta=2.0, max_new_tokens=100,
         new_ids.append(nxt)
         ids = torch.cat([ids, torch.tensor([[nxt]], device=device)], dim=1)
 
-    # The first generated token's green list was seeded by the LAST PROMPT TOKEN.
-    # So the detector must see that token too, or it cannot score position 1 and
-    # we lose a token of evidence.
-    detect_ids = [prompt_ids[-1]] + new_ids
+    # Score only within the generated text, NOT seeded from the prompt's last
+    # token. Kirchenbauer's own implementation does seed from the prompt (one
+    # extra token of evidence), but Takezawa et al. Alg. 1 leaves the first
+    # generated token unconstrained. We follow the NS paper for BOTH methods so
+    # Step 5 compares them under an identical detector. Mixing conventions would
+    # hand one method a free scored token.
+    detect_ids = new_ids
 
     return Generation(tok.decode(new_ids), prompt_ids, new_ids, detect_ids, vocab_size)
 

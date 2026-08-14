@@ -39,7 +39,8 @@ better text quality at the same 0% FNR, and the z-score guarantee becomes
 - [x] **Step 1** — `watermark/hashing.py`: deterministic green/red split
 - [x] **Step 2** — `watermark/detect.py`: z-score detector + repeated-n-gram skip
 - [x] **Step 3** — `watermark/soft.py`: Kirchenbauer Soft-Watermark baseline
-- [ ] **Step 4** — `watermark/ns.py`: NS-Watermark (Alg. 1 naive DP, Alg. 2 linear)
+- [x] **Step 4a** — `watermark/ns.py`: NS-Watermark Algorithm 1 (naive DP + table renderer)
+- [ ] **Step 4b** — Algorithm 2 (linear time) and the robustness parameter `β`
 - [ ] **Step 5** — `experiments/`: FNR/FPR, perplexity, reproduce Fig. 2
 
 ## Setup
