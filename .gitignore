@@ -1,0 +1,11 @@
+.venv/
+__pycache__/
+*.pyc
+.DS_Store
+
+# Copyrighted arXiv PDFs -- fetch them yourself, see README.
+papers/*.pdf
+
+# Experiment outputs (Step 5)
+results/
+figures/
